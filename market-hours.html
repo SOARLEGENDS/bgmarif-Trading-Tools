@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Hours - bgmarif Trading Tools</title>
+<link rel="icon" href="assets/logo.svg">
+<style>
+/* RESET & BASE */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif;}
+body { background:#F5F5F7; color:#1D1D1F; line-height:1.6;}
+a { text-decoration:none; color: inherit; }
+
+/* HEADER */
+header { background:#fff; padding:20px 5%; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 6px rgba(0,0,0,0.05); position:sticky; top:0; z-index:999;}
+header .logo { font-weight:700; font-size:22px; letter-spacing:1px; color:#1D1D1F;}
+header nav { display:flex; gap:15px;}
+header nav a { font-weight:500; padding:8px 12px; border-radius:8px; transition:0.3s;}
+header nav a:hover { background:#F0F0F5;}
+
+/* PAGE TITLE */
+.page-title { text-align:center; padding:40px 5%; }
+.page-title h1 { font-size:32px; margin-bottom:10px; font-weight:700; }
+.page-title p { color:#9A9A9A; font-size:16px; }
+
+/* MARKET HOURS TABLE */
+.market-hours { max-width:700px; margin:40px auto 60px; background:#fff; padding:30px; border-radius:15px; box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.market-hours h2 { margin-bottom:20px; font-weight:700; font-size:22px; text-align:center; }
+.market-hours table { width:100%; border-collapse:collapse; }
+.market-hours th, .market-hours td { padding:12px; text-align:center; border-bottom:1px solid #EAEAEA; }
+.market-hours th { background:#F0F0F5; font-weight:600; }
+.active { background:#007AFF; color:#fff; border-radius:8px; }
+
+/* FOOTER */
+footer { background:#fff; padding:40px 5%; text-align:center; color:#9A9A9A; font-size:14px; border-top:1px solid #EAEAEA; margin-top:50px;}
+footer a { color:#007AFF; }
+
+/* RESPONSIVE */
+@media(max-width:600px){ .page-title h1{font-size:26px;} .market-hours table th, .market-hours table td{font-size:14px; padding:8px;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">bgmarif Trading Tools</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="market-hours.html">Market Hours</a>
+    <a href="tools.html">Tools</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="auth/login.html">Login</a>
+  </nav>
+</header>
+
+<!-- PAGE TITLE -->
+<section class="page-title">
+  <h1>Forex Market Hours</h1>
+  <p>See the current session status and plan your trades efficiently.</p>
+</section>
+
+<!-- MARKET HOURS TABLE -->
+<section class="market-hours">
+  <h2>Current Market Sessions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Session</th>
+        <th>Open (GMT)</th>
+        <th>Close (GMT)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sydney</td>
+        <td>22:00</td>
+        <td>07:00</td>
+        <td id="sydney-status">Closed</td>
+      </tr>
+      <tr>
+        <td>Tokyo</td>
+        <td>00:00</td>
+        <td>09:00</td>
+        <td id="tokyo-status">Closed</td>
+      </tr>
+      <tr>
+        <td>London</td>
+        <td>08:00</td>
+        <td>17:00</td>
+        <td id="london-status">Closed</td>
+      </tr>
+      <tr>
+        <td>New York</td>
+        <td>13:00</td>
+        <td>22:00</td>
+        <td id="ny-status">Closed</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 bgmarif Trading Tools • <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms</a>
+</footer>
+
+<script>
+// Simple session status based on GMT hours
+function updateSessionStatus(){
+  let now = new Date();
+  let gmtHour = now.getUTCHours();
+
+  function checkSession(open, close){ return (gmtHour >= open && gmtHour < close) ? 'Open' : 'Closed'; }
+
+  document.getElementById('sydney-status').textContent = checkSession(22,7) === 'Open' ? 'Open' : 'Closed';
+  document.getElementById('tokyo-status').textContent = checkSession(0,9) === 'Open' ? 'Open' : 'Closed';
+  document.getElementById('london-status').textContent = checkSession(8,17) === 'Open' ? 'Open' : 'Closed';
+  document.getElementById('ny-status').textContent = checkSession(13,22) === 'Open' ? 'Open' : 'Closed';
+  
+  // Apply active class for styling
+  ['sydney','tokyo','london','ny'].forEach(session=>{
+    let statusTd = document.getElementById(session+'-status');
+    if(statusTd.textContent==='Open') statusTd.classList.add('active');
+    else statusTd.classList.remove('active');
+  });
+}
+
+// Update immediately
+updateSessionStatus();
+// Update every minute
+setInterval(updateSessionStatus,60000);
+</script>
+
+</body>
+</html>
 
