@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bgmarif Trading Tools</title>
+<link rel="icon" href="assets/logo.svg">
+<style>
+/* RESET & BASE */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif;}
+body { background: #F5F5F7; color:#1D1D1F; line-height:1.6; }
+a { text-decoration:none; color: inherit; }
+
+/* HEADER */
+header { background:#fff; padding:20px 5%; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 6px rgba(0,0,0,0.05); position:sticky; top:0; z-index:999;}
+header .logo { font-weight:700; font-size:22px; letter-spacing:1px; color:#1D1D1F;}
+header nav { display:flex; gap:25px;}
+header nav a { font-weight:500; padding:8px 12px; border-radius:8px; transition:0.3s;}
+header nav a:hover { background:#F0F0F5;}
+
+/* HERO */
+.hero { background:#fff; padding:60px 5%; text-align:center;}
+.hero h1 { font-size:36px; margin-bottom:15px; font-weight:700; }
+.hero p { font-size:18px; color:#9A9A9A; margin-bottom:30px; }
+.hero .btn { padding:14px 28px; background:#007AFF; color:#fff; border:none; border-radius:10px; font-size:16px; cursor:pointer; transition:0.3s;}
+.hero .btn:hover { background:#005BB5;}
+
+/* TOOLS GRID */
+.tools { padding:50px 5%; max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px;}
+.tool-card { background:#fff; padding:25px; border-radius:15px; box-shadow:0 4px 20px rgba(0,0,0,0.05); text-align:center; transition:0.3s;}
+.tool-card:hover { box-shadow:0 8px 25px rgba(0,0,0,0.1);}
+.tool-card img { width:50px; margin-bottom:15px; }
+.tool-card h3 { font-size:18px; margin-bottom:10px; font-weight:600; }
+.tool-card p { font-size:14px; color:#9A9A9A; }
+
+/* BLOG GRID */
+.blog { padding:50px 5%; max-width:1200px; margin:auto; }
+.blog h2 { font-size:28px; margin-bottom:30px; font-weight:700; text-align:center; }
+.blog-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px;}
+.blog-card { background:#fff; padding:20px; border-radius:15px; box-shadow:0 4px 20px rgba(0,0,0,0.05); transition:0.3s;}
+.blog-card:hover { box-shadow:0 8px 25px rgba(0,0,0,0.1);}
+.blog-card h4 { font-size:16px; margin-bottom:8px; font-weight:600; }
+.blog-card p { font-size:14px; color:#9A9A9A; }
+
+/* FOOTER */
+footer { background:#fff; padding:40px 5%; text-align:center; color:#9A9A9A; font-size:14px; border-top:1px solid #EAEAEA; margin-top:50px;}
+footer a { color:#007AFF; }
+
+/* RESPONSIVE */
+@media(max-width:600px){ .hero h1{font-size:28px;} .hero p{font-size:16px;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">bgmarif Trading Tools</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="market-hours.html">Market Hours</a>
+    <a href="tools.html">Tools</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="auth/login.html">Login</a>
+    <a href="auth/signup.html">Sign Up</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Precision Tools for Smarter Trading</h1>
+  <p>bgmarif Trading Tools provides real-time forex calculators, market sessions, and expert-designed resources — all in a clean, distraction-free interface.</p>
+  <button class="btn" onclick="window.location.href='tools.html'">Explore Tools</button>
+</section>
+
+<!-- TOOLS GRID -->
+<section class="tools">
+  <div class="tool-card">
+    <img src="assets/icons/pips.svg" alt="Pips Calculator">
+    <h3>Pips Calculator</h3>
+    <p>Quickly calculate pip values for any currency pair and lot size.</p>
+  </div>
+  <div class="tool-card">
+    <img src="assets/icons/position.svg" alt="Position Size">
+    <h3>Position Size</h3>
+    <p>Determine safe lot sizes based on risk percentage and stop loss.</p>
+  </div>
+  <div class="tool-card">
+    <img src="assets/icons/heatmap.svg" alt="Heatmap">
+    <h3>Market Heatmap</h3>
+    <p>Visualize active forex sessions and volatility overlaps.</p>
+  </div>
+  <div class="tool-card">
+    <img src="assets/icons/currency.svg" alt="Currency Converter">
+    <h3>Currency Converter</h3>
+    <p>Convert between major currencies in real-time.</p>
+  </div>
+  <div class="tool-card">
+    <img src="assets/icons/volatility.svg" alt="ATR Volatility">
+    <h3>ATR Volatility</h3>
+    <p>Check currency pair volatility using Average True Range.</p>
+  </div>
+  <div class="tool-card">
+    <img src="assets/icons/session.svg" alt="Session Overlaps">
+    <h3>Session Overlaps</h3>
+    <p>See overlapping trading sessions for better market timing.</p>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="blog">
+  <h2>Latest from bgmarif Forex Academy</h2>
+  <div class="blog-grid">
+    <div class="blog-card">
+      <h4>What Is the London Killzone? Full Guide</h4>
+      <p>Learn why the London session is the most liquid period in forex trading and how to maximize it.</p>
+    </div>
+    <div class="blog-card">
+      <h4>Best Time to Trade XAUUSD</h4>
+      <p>Discover peak gold trading hours and volatility patterns for safe entries.</p>
+    </div>
+    <div class="blog-card">
+      <h4>Position Size Calculation 101</h4>
+      <p>Step-by-step guide to managing your risk and calculating lot sizes like a pro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 bgmarif Trading Tools • <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms</a>
+</footer>
+
+</body>
+</html>
 
