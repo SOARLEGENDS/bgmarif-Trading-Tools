@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATR Volatility - bgmarif Trading Tools</title>
+<link rel="icon" href="../assets/logo.svg">
+<style>
+/* RESET & BASE */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#F5F5F7;color:#1D1D1F;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+
+/* HEADER */
+header{background:#fff;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.05);position:sticky;top:0;z-index:999;}
+header .logo{font-weight:700;font-size:22px;letter-spacing:1px;color:#1D1D1F;}
+header nav{display:flex;gap:15px;}
+header nav a{font-weight:500;padding:8px 12px;border-radius:8px;transition:0.3s;}
+header nav a:hover{background:#F0F0F5;}
+
+/* PAGE TITLE */
+.page-title{text-align:center;padding:40px 5%;}
+.page-title h1{font-size:32px;margin-bottom:10px;font-weight:700;}
+.page-title p{color:#9A9A9A;font-size:16px;}
+
+/* CALCULATOR */
+.calculator{max-width:500px;margin:20px auto 60px;background:#fff;padding:30px;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.calculator label{display:block;margin-bottom:5px;font-weight:600;}
+.calculator input, .calculator select{width:100%;padding:12px;margin-bottom:15px;border-radius:10px;border:2px solid #DCDCDC;font-size:16px;}
+.calculator button{width:100%;padding:14px;background:#007AFF;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer;transition:0.3s;}
+.calculator button:hover{background:#005BB5;}
+.result{margin-top:20px;padding:15px;background:#F0F0F5;border-radius:10px;font-weight:600;text-align:center;}
+
+/* FOOTER */
+footer{background:#fff;padding:40px 5%;text-align:center;color:#9A9A9A;font-size:14px;border-top:1px solid #EAEAEA;margin-top:50px;}
+footer a{color:#007AFF;}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .page-title h1{font-size:26px;}
+  .calculator input,.calculator select{font-size:14px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="logo">bgmarif Trading Tools</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="../market-hours.html">Market Hours</a>
+<a href="../tools.html">Tools</a>
+<a href="../blog.html">Blog</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+<a href="../auth/login.html">Login</a>
+</nav>
+</header>
+
+<!-- PAGE TITLE -->
+<section class="page-title">
+<h1>ATR Volatility Calculator</h1>
+<p>Estimate market volatility using Average True Range for your trades.</p>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calculator">
+<label for="high">High Price:</label>
+<input type="number" id="high" placeholder="E.g., 1.2345">
+
+<label for="low">Low Price:</label>
+<input type="number" id="low" placeholder="E.g., 1.2300">
+
+<label for="closePrev">Previous Close:</label>
+<input type="number" id="closePrev" placeholder="E.g., 1.2320">
+
+<button onclick="calculateATR()">Calculate ATR</button>
+
+<div class="result" id="result">Your ATR value will appear here.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+© 2026 bgmarif Trading Tools • <a href="../privacy.html">Privacy Policy</a> • <a href="../terms.html">Terms</a>
+</footer>
+
+<script>
+function calculateATR(){
+  let high = parseFloat(document.getElementById("high").value);
+  let low = parseFloat(document.getElementById("low").value);
+  let closePrev = parseFloat(document.getElementById("closePrev").value);
+
+  if(!high || !low || !closePrev){
+    document.getElementById("result").innerHTML = "Please fill in all fields.";
+    return;
+  }
+
+  // ATR = max(High-Low, abs(High-ClosePrev), abs(Low-ClosePrev))
+  let hl = high - low;
+  let hc = Math.abs(high - closePrev);
+  let lc = Math.abs(low - closePrev);
+
+  let atr = Math.max(hl,hc,lc);
+
+  document.getElementById("result").innerHTML = `ATR (volatility) = <strong>${atr.toFixed(4)}</strong>`;
+}
+</script>
+
+</body>
+</html>
