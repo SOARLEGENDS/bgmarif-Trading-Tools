@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Overlaps - bgmarif Trading Tools</title>
+<link rel="icon" href="../assets/logo.svg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#F5F5F7;color:#1D1D1F;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+header{background:#fff;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.05);position:sticky;top:0;z-index:999;}
+header .logo{font-weight:700;font-size:22px;letter-spacing:1px;color:#1D1D1F;}
+header nav{display:flex;gap:15px;}
+header nav a{font-weight:500;padding:8px 12px;border-radius:8px;transition:0.3s;}
+header nav a:hover{background:#F0F0F5;}
+.page-title{text-align:center;padding:40px 5%;}
+.page-title h1{font-size:32px;margin-bottom:10px;font-weight:700;}
+.page-title p{color:#9A9A9A;font-size:16px;}
+.overlap{max-width:700px;margin:40px auto 60px;background:#fff;padding:30px;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.overlap h2{text-align:center;font-weight:700;margin-bottom:20px;font-size:22px;}
+.overlap table{width:100%;border-collapse:collapse;text-align:center;}
+.overlap th, .overlap td{padding:12px;border:1px solid #EAEAEA;font-weight:500;}
+.overlap th{background:#F0F0F5;}
+.active{background:#007AFF;color:#fff;border-radius:5px;}
+.medium{background:#66B2FF;color:#fff;border-radius:5px;}
+.inactive{background:#F0F0F5;color:#9A9A9A;border-radius:5px;}
+footer{background:#fff;padding:40px 5%;text-align:center;color:#9A9A9A;font-size:14px;border-top:1px solid #EAEAEA;margin-top:50px;}
+footer a{color:#007AFF;}
+@media(max-width:600px){.page-title h1{font-size:26px;}.overlap table th,.overlap table td{font-size:14px;padding:8px;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">bgmarif Trading Tools</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="../market-hours.html">Market Hours</a>
+<a href="../tools.html">Tools</a>
+<a href="../blog.html">Blog</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+<a href="../auth/login.html">Login</a>
+</nav>
+</header>
+
+<section class="page-title">
+<h1>Session Overlaps</h1>
+<p>See where Forex trading sessions overlap for maximum market activity.</p>
+</section>
+
+<section class="overlap">
+<h2>Current Session Overlaps (GMT)</h2>
+<table>
+<thead>
+<tr>
+<th>Overlap</th>
+<th>Time (GMT)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>London & New York</td>
+<td>13:00 - 17:00</td>
+<td id="ln-status" class="inactive">Inactive</td>
+</tr>
+<tr>
+<td>Tokyo & London</td>
+<td>08:00 - 09:00</td>
+<td id="tl-status" class="inactive">Inactive</td>
+</tr>
+<tr>
+<td>Tokyo & Sydney</td>
+<td>00:00 - 07:00</td>
+<td id="ts-status" class="inactive">Inactive</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<footer>
+© 2026 bgmarif Trading Tools • <a href="../privacy.html">Privacy Policy</a> • <a href="../terms.html">Terms</a>
+</footer>
+
+<script>
+// Session overlap status based on GMT
+function updateOverlap(){
+  const now = new Date();
+  const gmt = now.getUTCHours();
+
+  const overlaps = {
+    'ln-status':[13,17],
+    'tl-status':[8,9],
+    'ts-status':[0,7]
+  };
+
+  Object.keys(overlaps).forEach(id=>{
+    let [start,end] = overlaps[id];
+    let cell = document.getElementById(id);
+    if(start < end){
+      if(gmt>=start && gmt<end){ cell.textContent='Active'; cell.className='active'; }
+      else{ cell.textContent='Inactive'; cell.className='inactive'; }
+    } else {
+      if(gmt>=start || gmt<end){ cell.textContent='Active'; cell.className='active'; }
+      else{ cell.textContent='Inactive'; cell.className='inactive'; }
+    }
+  });
+}
+
+updateOverlap();
+setInterval(updateOverlap,60000);
+</script>
+
+</body>
+</html>
