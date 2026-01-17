@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forex Heatmap - bgmarif Trading Tools</title>
+<link rel="icon" href="../assets/logo.svg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#F5F5F7;color:#1D1D1F;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+header{background:#fff;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.05);position:sticky;top:0;z-index:999;}
+header .logo{font-weight:700;font-size:22px;letter-spacing:1px;color:#1D1D1F;}
+header nav{display:flex;gap:15px;}
+header nav a{font-weight:500;padding:8px 12px;border-radius:8px;transition:0.3s;}
+header nav a:hover{background:#F0F0F5;}
+.page-title{text-align:center;padding:40px 5%;}
+.page-title h1{font-size:32px;margin-bottom:10px;font-weight:700;}
+.page-title p{color:#9A9A9A;font-size:16px;}
+.heatmap{max-width:700px;margin:40px auto 60px;background:#fff;padding:30px;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.heatmap h2{text-align:center;font-weight:700;margin-bottom:20px;font-size:22px;}
+.heatmap table{width:100%;border-collapse:collapse;text-align:center;}
+.heatmap th, .heatmap td{padding:12px;border:1px solid #EAEAEA;font-weight:500;}
+.heatmap th{background:#F0F0F5;}
+.active{background:#007AFF;color:#fff;border-radius:5px;}
+.medium{background:#66B2FF;color:#fff;border-radius:5px;}
+.inactive{background:#F0F0F5;color:#9A9A9A;border-radius:5px;}
+footer{background:#fff;padding:40px 5%;text-align:center;color:#9A9A9A;font-size:14px;border-top:1px solid #EAEAEA;margin-top:50px;}
+footer a{color:#007AFF;}
+@media(max-width:600px){.page-title h1{font-size:26px;}.heatmap table th,.heatmap table td{font-size:14px;padding:8px;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">bgmarif Trading Tools</div>
+<nav>
+<a href="../index.html">Home</a>
+<a href="../market-hours.html">Market Hours</a>
+<a href="../tools.html">Tools</a>
+<a href="../blog.html">Blog</a>
+<a href="../about.html">About</a>
+<a href="../contact.html">Contact</a>
+<a href="../auth/login.html">Login</a>
+</nav>
+</header>
+
+<section class="page-title">
+<h1>Forex Market Heatmap</h1>
+<p>Visualize active trading sessions and currency volatility at a glance.</p>
+</section>
+
+<section class="heatmap">
+<h2>Session Heatmap (GMT)</h2>
+<table>
+<thead>
+<tr>
+<th>Currency Pair</th>
+<th>Sydney</th>
+<th>Tokyo</th>
+<th>London</th>
+<th>New York</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EUR/USD</td>
+<td id="eurusd-syd" class="inactive">-</td>
+<td id="eurusd-tok" class="inactive">-</td>
+<td id="eurusd-lon" class="inactive">-</td>
+<td id="eurusd-ny" class="inactive">-</td>
+</tr>
+<tr>
+<td>GBP/USD</td>
+<td id="gbpusd-syd" class="inactive">-</td>
+<td id="gbpusd-tok" class="inactive">-</td>
+<td id="gbpusd-lon" class="inactive">-</td>
+<td id="gbpusd-ny" class="inactive">-</td>
+</tr>
+<tr>
+<td>USD/JPY</td>
+<td id="usdjpy-syd" class="inactive">-</td>
+<td id="usdjpy-tok" class="inactive">-</td>
+<td id="usdjpy-lon" class="inactive">-</td>
+<td id="usdjpy-ny" class="inactive">-</td>
+</tr>
+<tr>
+<td>XAU/USD</td>
+<td id="xauusd-syd" class="inactive">-</td>
+<td id="xauusd-tok" class="inactive">-</td>
+<td id="xauusd-lon" class="inactive">-</td>
+<td id="xauusd-ny" class="inactive">-</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<footer>
+© 2026 bgmarif Trading Tools • <a href="../privacy.html">Privacy Policy</a> • <a href="../terms.html">Terms</a>
+</footer>
+
+<script>
+// Simulated activity: change based on GMT time
+function updateHeatmap(){
+  const now = new Date();
+  const gmtHour = now.getUTCHours();
+
+  function getStatus(open, close){
+    if(open<close){
+      if(gmtHour >= open && gmtHour < close) return 'active';
+      else return 'inactive';
+    } else { // overnight session
+      if(gmtHour >= open || gmtHour < close) return 'active';
+      else return 'inactive';
+    }
+  }
+
+  const sessions = {
+    syd: {open:22,close:7},
+    tok: {open:0,close:9},
+    lon: {open:8,close:17},
+    ny: {open:13,close:22}
+  };
+
+  const pairs = ['eurusd','gbpusd','usdjpy','xauusd'];
+
+  pairs.forEach(pair=>{
+    ['syd','tok','lon','ny'].forEach(sess=>{
+      let cell = document.getElementById(pair+'-'+sess);
+      let status = getStatus(sessions[sess].open,sessions[sess].close);
+      cell.className = status;
+      cell.textContent = status==='active'?'Active':'Inactive';
+    });
+  });
+}
+
+updateHeatmap();
+setInterval(updateHeatmap,60000);
+</script>
+
+</body>
+</html>
