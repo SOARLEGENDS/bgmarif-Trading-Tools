@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools - bgmarif Trading Tools</title>
+<link rel="icon" href="assets/logo.svg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#F5F5F7;color:#1D1D1F;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+header{background:#fff;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,0.05);position:sticky;top:0;z-index:999;}
+header .logo{font-weight:700;font-size:22px;letter-spacing:1px;color:#1D1D1F;}
+header nav{display:flex;gap:15px;}
+header nav a{font-weight:500;padding:8px 12px;border-radius:8px;transition:0.3s;}
+header nav a:hover{background:#F0F0F5;}
+.page-title{text-align:center;padding:40px 5%;}
+.page-title h1{font-size:32px;margin-bottom:10px;font-weight:700;}
+.page-title p{color:#9A9A9A;font-size:16px;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:0 5%;margin-bottom:60px;}
+.tool-card{background:#fff;padding:20px;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.05);text-align:center;transition:0.3s;cursor:pointer;}
+.tool-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,0.08);}
+.tool-card img{width:50px;height:50px;margin-bottom:15px;}
+.tool-card h3{font-size:18px;margin-bottom:10px;font-weight:700;}
+.tool-card p{color:#9A9A9A;font-size:14px;}
+footer{background:#fff;padding:40px 5%;text-align:center;color:#9A9A9A;font-size:14px;border-top:1px solid #EAEAEA;margin-top:50px;}
+footer a{color:#007AFF;}
+@media(max-width:600px){.page-title h1{font-size:26px;}.tool-card h3{font-size:16px;}.tool-card p{font-size:13px;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="logo">bgmarif Trading Tools</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="market-hours.html">Market Hours</a>
+<a href="tools.html">Tools</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="auth/login.html">Login</a>
+</nav>
+</header>
+
+<!-- PAGE TITLE -->
+<section class="page-title">
+<h1>Trading Tools</h1>
+<p>All bgmarif Trading Tools at one place for easy access and smarter trading.</p>
+</section>
+
+<!-- TOOLS GRID -->
+<section class="tools-grid">
+<!-- Tool 1: Pips Calculator -->
+<div class="tool-card" onclick="location.href='tools/pips-calculator.html'">
+<img src="assets/icons/pips.svg" alt="Pips Calculator">
+<h3>Pips Calculator</h3>
+<p>Calculate pip value quickly for any currency pair.</p>
+</div>
+
+<!-- Tool 2: Position Size Calculator -->
+<div class="tool-card" onclick="location.href='tools/position-size.html'">
+<img src="assets/icons/position.svg" alt="Position Size Calculator">
+<h3>Position Size Calculator</h3>
+<p>Determine optimal lot size based on risk & stop loss.</p>
+</div>
+
+<!-- Tool 3: Market Hours -->
+<div class="tool-card" onclick="location.href='market-hours.html'">
+<img src="assets/icons/clock.svg" alt="Market Hours">
+<h3>Market Hours</h3>
+<p>See live Forex session timings and open markets.</p>
+</div>
+
+<!-- Tool 4: Currency Converter -->
+<div class="tool-card" onclick="location.href='tools/currency-converter.html'">
+<img src="assets/icons/currency.svg" alt="Currency Converter">
+<h3>Currency Converter</h3>
+<p>Convert major currencies instantly without leaving the page.</p>
+</div>
+
+<!-- Tool 5: Heatmap -->
+<div class="tool-card" onclick="location.href='tools/heatmap.html'">
+<img src="assets/icons/heatmap.svg" alt="Heatmap">
+<h3>Heatmap</h3>
+<p>Visualize active trading sessions & currency volatility.</p>
+</div>
+
+<!-- Tool 6: ATR Volatility -->
+<div class="tool-card" onclick="location.href='tools/atr-volatility.html'">
+<img src="assets/icons/atr.svg" alt="ATR Volatility">
+<h3>ATR Volatility</h3>
+<p>Check Average True Range to estimate market movement potential.</p>
+</div>
+
+<!-- Tool 7: Session Overlaps -->
+<div class="tool-card" onclick="location.href='tools/session-overlaps.html'">
+<img src="assets/icons/overlap.svg" alt="Session Overlaps">
+<h3>Session Overlaps</h3>
+<p>Identify which Forex sessions overlap for maximum liquidity.</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+© 2026 bgmarif Trading Tools • <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms</a>
+</footer>
+
+</body>
+</html>
 
