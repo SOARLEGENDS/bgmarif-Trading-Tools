@@ -32,17 +32,50 @@ footer a{color:#007AFF;}
 
 <!-- HEADER -->
 <header>
-<div class="logo">bgmarif Trading Tools</div>
-<nav>
-<a href="index.html">Home</a>
-<a href="market-hours.html">Market Hours</a>
-<a href="tools.html">Tools</a>
-<a href="blog.html">Blog</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="auth/login.html">Login</a>
-</nav>
+  <div class="logo">bgmarif Trading Tools</div>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/tools.html">Tools</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+
+    <a id="loginBtn" href="/auth/login.html">Login</a>
+    <a id="logoutBtn" href="#" onclick="logoutUser()" style="display:none;">Logout</a>
+  </nav>
 </header>
+
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "https://aqfvwbsxxeyennfbuhrd.supabase.co";
+const SUPABASE_KEY = "sb_publishable_GQR4fYRMQQqFvmLp4W5kVw_S7r0mn0C";
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function loadUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+
+    const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (user) {
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+    } else {
+        loginBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+    }
+}
+
+async function logoutUser() {
+    await supabase.auth.signOut();
+    location.reload();
+}
+
+loadUser();
+</script>
+
 
 <!-- PAGE TITLE -->
 <section class="page-title">
